@@ -21,22 +21,22 @@ public class SortingHelper {
         DefaultedList<Slot> slots = client.player.currentScreenHandler.slots;
         List<SortableSlot> sortableSlots = new ArrayList<>();
 
-        LightweightInventorySorting.LOGGER.info("Collecting sort details...");
+        LightweightInventorySorting.LOGGER.debug("Collecting sort details...");
         for (int i = startIndex; i <= endIndex; i++) {
             ItemStack stack = slots.get(i).getStack();
             if (stack.isEmpty()) { continue; }
 
-            LightweightInventorySorting.LOGGER.info(i + ": " + stack.getName().getString() + ", " + stack.getCount() + "/" + stack.getMaxCount() + ", " + stack.getItem().getName().getString());
+            LightweightInventorySorting.LOGGER.debug(i + ": " + stack.getName().getString() + ", " + stack.getCount() + "/" + stack.getMaxCount() + ", " + stack.getItem().getName().getString());
             sortableSlots.add(new SortableSlot(i, stack));
         }
 
         ItemStack mouseStack = stackAttachedToMouse(client);
         if (mouseStack != null) {
-            LightweightInventorySorting.LOGGER.info("MOUSE: " + mouseStack.getName().getString() + ", " + mouseStack.getCount() + "/" + mouseStack.getMaxCount() + ", " + mouseStack.getItem().getName().getString());
+            LightweightInventorySorting.LOGGER.debug("MOUSE: " + mouseStack.getName().getString() + ", " + mouseStack.getCount() + "/" + mouseStack.getMaxCount() + ", " + mouseStack.getItem().getName().getString());
             int index = findEmptySlotIndex(slots, startIndex, endIndex);
 
             if (index == -1) {
-                LightweightInventorySorting.LOGGER.info("An error occurred while attempting to sort items in slots with an item already selected!");
+                LightweightInventorySorting.LOGGER.error("An error occurred while attempting to sort items in slots with an item already selected!");
                 return;
             }
 
