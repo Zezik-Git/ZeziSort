@@ -12,7 +12,7 @@ public class ModMenu implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> createConfigScreen(parent);
+        return this::createConfigScreen;
     }
 
     private Screen createConfigScreen(Screen parent) {
@@ -28,11 +28,19 @@ public class ModMenu implements ModMenuApi {
 
         generalSettings.addEntry(entryBuilder.startEnumSelector(
                         Text.translatable("category.lightweight-inventory-sorting.sort-type"),
-                        SortTypes.class,
+                        SortType.class,
                         LightweightInventorySortingConfig.sortType
-                ).setDefaultValue(SortTypes.ALPHANUMERIC)
+                ).setDefaultValue(SortType.INDEX)
                 .setSaveConsumer(newValue -> LightweightInventorySortingConfig.sortType = newValue)
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.sort-type-tooltip"))
+                .build());
+
+        generalSettings.addEntry(entryBuilder.startBooleanToggle(
+                        Text.translatable("category.lightweight-inventory-sorting.reverse-sort"),
+                        LightweightInventorySortingConfig.reverseSort
+                ).setDefaultValue(false)
+                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.reverseSort = newValue)
+                .setTooltip(Text.translatable("category.lightweight-inventory-sorting.reverse-sort-tooltip"))
                 .build());
 
         generalSettings.addEntry(entryBuilder.startIntField(
@@ -86,7 +94,7 @@ public class ModMenu implements ModMenuApi {
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.container-y-tooltip"))
                 .build());
 
-        builder.setSavingRunnable(() -> LightweightInventorySortingConfig.save());
+        builder.setSavingRunnable(LightweightInventorySortingConfig::save);
 
         return builder.build();
     }

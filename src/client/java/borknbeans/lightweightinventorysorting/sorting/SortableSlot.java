@@ -35,14 +35,14 @@ public class SortableSlot implements Comparable<SortableSlot> {
 
     @Override
     public int compareTo(@NotNull SortableSlot o) {
-        // Compare the names of the two stacks
+        // Compare the two stacks
         int result = LightweightInventorySortingConfig.sortType.compare(this.getStack(), o.getStack());
 
-        if (result != 0) { // Items have different names
+        if (result != 0) { // Items are different
             return result;
-        } else if (!ItemStack.areItemsAndComponentsEqual(this.getStack(), o.getStack())) { // Items have the same name, but different components or items
+        } else if (!ItemStack.areItemsAndComponentsEqual(this.getStack(), o.getStack())) { // Items are the same, but different components (or item)
             return 0;
-        } else { // Items have same name, are same item, and have same components
+        } else { // Item and components is the exact same
             return o.getStack().getCount() - this.getStack().getCount();
         }
     }

@@ -9,33 +9,21 @@ public enum ButtonSize {
     LARGE;
 
     public int getButtonSize() {
-        switch (this) {
-            case SMALL:
-                return 6;
-            case MEDIUM:
-                return 9;
-            case LARGE:
-                return 12;
-        }
-
-        return 0;
+        return switch (this) {
+            case SMALL -> 6;
+            case MEDIUM -> 9;
+            case LARGE -> 12;
+        };
     }
 
     public Identifier getButtonTexture() {
-        String fileName = "sort_button_large";
-        switch (this) {
-            case SMALL:
-                fileName = "sort_button_small";
-                break;
-            case MEDIUM:
-                fileName = "sort_button_medium";
-                break;
-            case LARGE:
-                fileName = "sort_button_large";
-                break;
-        }
+        String fileName = switch (this) {
+            case SMALL -> "sort_button_small";
+            case MEDIUM -> "sort_button_medium";
+            case LARGE -> "sort_button_large";
+        };
 
-        if (LightweightInventorySortingConfig.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
+        if (LightweightInventorySortingConfig.reverseSort) {
             fileName += "_z";
         }
 
@@ -43,20 +31,13 @@ public enum ButtonSize {
     }
 
     public Identifier getButtonHoverTexture() {
-        String fileName = "sort_button_large_hover";
-        switch (this) {
-            case SMALL:
-                fileName = "sort_button_small_hover";
-                break;
-            case MEDIUM:
-                fileName = "sort_button_medium_hover";
-                break;
-            case LARGE:
-                fileName = "sort_button_large_hover";
-                break;
-        }
+        String fileName = switch (this) {
+            case SMALL -> "sort_button_small_hover";
+            case MEDIUM -> "sort_button_medium_hover";
+            case LARGE -> "sort_button_large_hover";
+        };
 
-        if (LightweightInventorySortingConfig.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
+        if (LightweightInventorySortingConfig.reverseSort) {
             fileName += "_z";
         }
 
