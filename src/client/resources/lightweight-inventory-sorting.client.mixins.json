@@ -3,9 +3,9 @@
 	"package": "borknbeans.lightweightinventorysorting.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"MixinInventoryScreen",
-		"MixinGenericContainerScreen",
-		"MixinShulkerBoxScreen"
+		"InventoryScreenMixin",
+		"GenericContainerScreenMixin",
+		"ShulkerBoxScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
