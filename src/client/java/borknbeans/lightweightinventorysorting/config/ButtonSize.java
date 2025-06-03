@@ -35,10 +35,6 @@ public enum ButtonSize {
                 break;
         }
 
-        if (Config.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
-            fileName += "_z";
-        }
-
         return Identifier.of(LightweightInventorySorting.MOD_ID, fileName);
     }
 
@@ -54,10 +50,6 @@ public enum ButtonSize {
             case LARGE:
                 fileName = "sort_button_large_hover";
                 break;
-        }
-
-        if (Config.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
-            fileName += "_z";
         }
 
         return Identifier.of(LightweightInventorySorting.MOD_ID, fileName);
