@@ -54,5 +54,4 @@ public enum ButtonSize {
 
         return Identifier.of(LightweightInventorySorting.MOD_ID, fileName);
     }
-
 }

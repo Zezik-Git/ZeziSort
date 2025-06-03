@@ -29,17 +29,17 @@ public class ModMenu implements ModMenuApi {
         generalSettings.addEntry(entryBuilder.startEnumSelector(
                         Text.translatable("category.lightweight-inventory-sorting.sort-type"),
                         SortTypes.class,
-                        LightweightInventorySortingConfig.sortType
+                        Config.sortType
                 ).setDefaultValue(SortTypes.ALPHANUMERIC)
-                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.sortType = newValue)
+                .setSaveConsumer(newValue -> Config.sortType = newValue)
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.sort-type-tooltip"))
                 .build());
 
         generalSettings.addEntry(entryBuilder.startIntField(
                         Text.translatable("category.lightweight-inventory-sorting.sort-delay"),
-                        LightweightInventorySortingConfig.sortDelay
+                        Config.sortDelay
                 ).setDefaultValue(0)
-                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.sortDelay = newValue)
+                .setSaveConsumer(newValue -> Config.sortDelay = newValue)
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.sort-delay-tooltip"))
                 .build());
 
@@ -49,44 +49,44 @@ public class ModMenu implements ModMenuApi {
         generalSettings.addEntry(entryBuilder.startEnumSelector(
                         Text.translatable("category.lightweight-inventory-sorting.button-size"),
                         ButtonSize.class,
-                        LightweightInventorySortingConfig.buttonSize
+                        Config.buttonSize
                 ).setDefaultValue(ButtonSize.LARGE)
-                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.buttonSize = newValue)
+                .setSaveConsumer(newValue -> Config.buttonSize = newValue)
                 .build());
 
         generalSettings.addEntry(entryBuilder.startIntField(
                     Text.translatable("category.lightweight-inventory-sorting.inventory-x"),
-                    LightweightInventorySortingConfig.xOffsetInventory
+                    Config.xOffsetInventory
                 ).setDefaultValue(0)
-                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.xOffsetInventory = newValue)
+                .setSaveConsumer(newValue -> Config.xOffsetInventory = newValue)
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.inventory-x-tooltip"))
                 .build());
 
         generalSettings.addEntry(entryBuilder.startIntField(
                         Text.translatable("category.lightweight-inventory-sorting.inventory-y"),
-                        LightweightInventorySortingConfig.yOffsetInventory
+                        Config.yOffsetInventory
                 ).setDefaultValue(0)
-                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.yOffsetInventory = newValue)
+                .setSaveConsumer(newValue -> Config.yOffsetInventory = newValue)
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.inventory-y-tooltip"))
                 .build());
 
         generalSettings.addEntry(entryBuilder.startIntField(
                         Text.translatable("category.lightweight-inventory-sorting.container-x"),
-                        LightweightInventorySortingConfig.xOffsetContainer
+                        Config.xOffsetContainer
                 ).setDefaultValue(0)
-                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.xOffsetContainer = newValue)
+                .setSaveConsumer(newValue -> Config.xOffsetContainer = newValue)
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.container-x-tooltip"))
                 .build());
 
         generalSettings.addEntry(entryBuilder.startIntField(
                         Text.translatable("category.lightweight-inventory-sorting.container-y"),
-                        LightweightInventorySortingConfig.yOffsetContainer
+                        Config.yOffsetContainer
                 ).setDefaultValue(0)
-                .setSaveConsumer(newValue -> LightweightInventorySortingConfig.yOffsetContainer = newValue)
+                .setSaveConsumer(newValue -> Config.yOffsetContainer = newValue)
                 .setTooltip(Text.translatable("category.lightweight-inventory-sorting.container-y-tooltip"))
                 .build());
 
-        builder.setSavingRunnable(() -> LightweightInventorySortingConfig.save());
+        builder.setSavingRunnable(() -> Config.save());
 
         return builder.build();
     }
