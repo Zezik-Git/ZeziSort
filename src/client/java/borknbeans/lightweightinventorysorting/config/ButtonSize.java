@@ -35,7 +35,7 @@ public enum ButtonSize {
                 break;
         }
 
-        if (LightweightInventorySortingConfig.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
+        if (Config.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
             fileName += "_z";
         }
 
@@ -56,11 +56,10 @@ public enum ButtonSize {
                 break;
         }
 
-        if (LightweightInventorySortingConfig.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
+        if (Config.sortType == SortTypes.REVERSE_ALPHANUMERIC) {
             fileName += "_z";
         }
 
         return Identifier.of(LightweightInventorySorting.MOD_ID, fileName);
     }
-
 }
