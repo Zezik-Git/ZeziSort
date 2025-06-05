@@ -16,8 +16,9 @@ public class Config {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
 
-    public static SortTypes sortType = SortTypes.ALPHANUMERIC;
+    public static SortType sortType = SortType.INDEX;
     public static ButtonSize buttonSize = ButtonSize.LARGE;
+    public static boolean reverseSort = false;
 
     public static int xOffsetInventory = 0;
     public static int yOffsetInventory = 0;
@@ -27,8 +28,9 @@ public class Config {
     public static int sortDelay = 0;
 
     private static class ConfigData {
-        SortTypes sortType;
+        SortType sortType;
         ButtonSize buttonSize;
+        boolean reverseSort;
         int xOffsetInventory;
         int yOffsetInventory;
         int xOffsetContainer;
@@ -40,8 +42,9 @@ public class Config {
         if (CONFIG_FILE.exists()) {
             try (FileReader reader = new FileReader(CONFIG_FILE)) {
                 ConfigData data = GSON.fromJson(reader, ConfigData.class);
-                sortType = data.sortType == null ? SortTypes.ALPHANUMERIC : data.sortType;
+                sortType = data.sortType == null ? SortType.INDEX : data.sortType;
                 buttonSize = data.buttonSize == null ? ButtonSize.MEDIUM : data.buttonSize;
+                reverseSort = data.reverseSort;
                 xOffsetInventory = data.xOffsetInventory;
                 yOffsetInventory = data.yOffsetInventory;
                 xOffsetContainer = data.xOffsetContainer;
@@ -59,6 +62,7 @@ public class Config {
             ConfigData data = new ConfigData();
             data.sortType = sortType;
             data.buttonSize = buttonSize;
+            data.reverseSort = reverseSort;
             data.xOffsetInventory = xOffsetInventory;
             data.yOffsetInventory = yOffsetInventory;
             data.xOffsetContainer = xOffsetContainer;
