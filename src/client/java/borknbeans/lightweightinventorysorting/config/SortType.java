@@ -20,13 +20,13 @@ public enum SortType {
     public int compare(ItemStack left, ItemStack right) {
         // Check for empty slots
         if (left.isEmpty() && !right.isEmpty()) {
-            return 0;
+            return 1;
         } else if (right.isEmpty() && !left.isEmpty()) {
             return -1;
         }
 
         int result = this.comparator.compare(left, right);
-
-        return LightweightInventorySortingConfig.reverseSort ? -result : result;
+        result = Config.reverseSort ? -result : result;
+        return result == 0 ? left.getCount() - right.getCount() : result;
     }
 }

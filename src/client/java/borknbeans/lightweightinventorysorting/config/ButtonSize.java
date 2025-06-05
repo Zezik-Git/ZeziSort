@@ -23,10 +23,6 @@ public enum ButtonSize {
             case LARGE -> "sort_button_large";
         };
 
-        if (LightweightInventorySortingConfig.reverseSort) {
-            fileName += "_z";
-        }
-
         return Identifier.of(LightweightInventorySorting.MOD_ID, fileName);
     }
 
@@ -37,11 +33,6 @@ public enum ButtonSize {
             case LARGE -> "sort_button_large_hover";
         };
 
-        if (LightweightInventorySortingConfig.reverseSort) {
-            fileName += "_z";
-        }
-
         return Identifier.of(LightweightInventorySorting.MOD_ID, fileName);
     }
-
 }

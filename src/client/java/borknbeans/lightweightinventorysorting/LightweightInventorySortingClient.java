@@ -1,6 +1,6 @@
 package borknbeans.lightweightinventorysorting;
 
-import borknbeans.lightweightinventorysorting.config.LightweightInventorySortingConfig;
+import borknbeans.lightweightinventorysorting.config.Config;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
@@ -22,17 +22,16 @@ public class LightweightInventorySortingClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		LightweightInventorySortingConfig.load();
-
+		Config.load();
 		registerKeyBindings();
 	}
 
 	private void registerKeyBindings() {
 		sortKeyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-				"key.lightweight-inventory-sorting.sort",
-				InputUtil.Type.KEYSYM,
-				GLFW.GLFW_KEY_R,
-				"category.lightweight-inventory-sorting.title"
+			"key.lightweight-inventory-sorting.sort",
+			InputUtil.Type.KEYSYM,
+			GLFW.GLFW_KEY_R,
+			"category.lightweight-inventory-sorting.title"
 		));
 	}
 
