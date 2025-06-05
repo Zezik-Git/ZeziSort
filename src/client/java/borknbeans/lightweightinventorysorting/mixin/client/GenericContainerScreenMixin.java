@@ -1,3 +1,4 @@
+
 package borknbeans.lightweightinventorysorting.mixin.client;
 
 import borknbeans.lightweightinventorysorting.LightweightInventorySortingClient;
