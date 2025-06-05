@@ -30,7 +30,7 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
     private void onInit(CallbackInfo ci) {
         int size = Config.buttonSize.getButtonSize();
         sortButton = new SortButton(0, 0, size, size, Text.literal("S"), 9, 35);
-        setButtonCoordinates();
+        setButtonCoordinates(size);
 
         this.addDrawableChild(sortButton);
     }
@@ -38,7 +38,7 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
     @Inject(method = "render", at = @At("RETURN"))
     private void onRender(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (sortButton != null) {
-            setButtonCoordinates();
+            setButtonCoordinates(Config.buttonSize.getButtonSize());
             sortButton.render(context, mouseX, mouseY, delta);
         }
     }
@@ -50,6 +50,11 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
             sortButton.onClick(0f, 0f); // Simulate a click
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+
+    private void setButtonCoordinates(int size) {
+        sortButton.setX(this.x + this.backgroundWidth - 20 + Config.xOffsetInventory + 12 - size);
+        sortButton.setY(this.height / 2 - 15 + Config.yOffsetInventory + 12 - size);
     }
 
     @Override

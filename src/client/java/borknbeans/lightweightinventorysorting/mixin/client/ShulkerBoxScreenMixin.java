@@ -32,7 +32,7 @@ public abstract class ShulkerBoxScreenMixin extends HandledScreen<ShulkerBoxScre
         int x = this.x + this.backgroundWidth - 20 + Config.xOffsetContainer;
         int y = this.y + 4 + Config.yOffsetContainer;
         int size = Config.buttonSize.getButtonSize();
-        sortButton = new SortButton(x, y, size, size, Text.literal("S"), 0, getScreenHandler().slots.size() - 37);
+        sortButton = new SortButton(x + 12 - size, y + 12 - size, size, size, Text.literal("S"), 0, getScreenHandler().slots.size() - 37);
 
         // Add button to the screen
         this.addDrawableChild(sortButton);
