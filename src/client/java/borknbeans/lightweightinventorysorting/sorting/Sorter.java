@@ -27,8 +27,6 @@ public class Sorter {
 
         var syncId = client.player.currentScreenHandler.syncId;
 
-        
-
         var snapshot = getInventorySnapshot(client, sortStartIndex, sortEndIndex);
         var snapshotEncoder = new SortSnapshotClientside(snapshot);
         LightweightInventorySorting.LOGGER.info("Encoded snapshot: " + snapshotEncoder.encode());
@@ -148,8 +146,6 @@ public class Sorter {
             throw new Exception("[Sort] Mouse stack is not empty");
         }
 
-
-
         for (int i = 0; i < sortedStacks.size(); i++) {
             var sortedStack = sortedStacks.get(i);
 
@@ -162,7 +158,7 @@ public class Sorter {
             }
 
             if (stackCurrIndex == -1) {
-                throw new Exception("[Sort] Stack not found in inventory");
+                throw new Exception("[Sort] Stack not found in inventory, looking for: " + sortedStack.toString());
             }
 
             if (stackCurrIndex == i + sortStartIndex) {
@@ -172,10 +168,23 @@ public class Sorter {
             var pickupOperation = new ClickOperation(client, syncId, stackCurrIndex, sortedStack, ItemStack.EMPTY, ItemStack.EMPTY, sortedStack);
 
             var existingStack = snapshot.get(i).copy();
+
+            // If the item that is in our desired slot is a bundle, we need to handle it differently
+            if (existingStack.getItem() instanceof BundleItem) {
+                var pickupBundleOperation = new ClickOperation(client, syncId, i + sortStartIndex, existingStack, ItemStack.EMPTY, ItemStack.EMPTY, existingStack);
+                var placeBundleElsewhereOperation = new ClickOperation(client, syncId, getEmptySlotIndex(snapshot) + sortStartIndex, ItemStack.EMPTY, existingStack, existingStack, ItemStack.EMPTY);
+
+                pickupBundleOperation.execute();
+                placeBundleElsewhereOperation.execute();
+
+                existingStack = ItemStack.EMPTY;
+            }
+
             var placeOperation = new ClickOperation(client, syncId, i + sortStartIndex, existingStack, sortedStack, sortedStack, existingStack);
 
             var emptyHandOperation = new ClickOperation(client, syncId, stackCurrIndex, ItemStack.EMPTY, existingStack, existingStack, ItemStack.EMPTY);
             
+            // If the item we are sorting is a bundle, we need to handle it differently
             if (sortedStack.getItem() instanceof BundleItem) {
                 if (!existingStack.isEmpty()) {
                     var pickupTargetSlotOperation = new ClickOperation(client, syncId, i + sortStartIndex, existingStack, ItemStack.EMPTY, ItemStack.EMPTY, existingStack);
@@ -232,7 +241,6 @@ public class Sorter {
 
         List<ItemStack> snapshot = new ArrayList<>();
         for (int i = 0; i < slots.size(); i++) {
-            // LightweightInventorySorting.LOGGER.info("Slot " + i + ": " + slots.get(i).getStack().toString());
             if (i < sortStartIndex || i > sortEndIndex) {
                 continue;
             }

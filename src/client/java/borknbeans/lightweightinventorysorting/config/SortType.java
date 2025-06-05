@@ -27,6 +27,6 @@ public enum SortType {
 
         int result = this.comparator.compare(left, right);
         result = Config.reverseSort ? -result : result;
-        return result == 0 ? left.getCount() - right.getCount() : result;
+        return result == 0 ? right.getCount() - left.getCount() : result;
     }
 }
