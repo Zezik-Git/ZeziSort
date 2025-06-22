@@ -1,8 +1,11 @@
 package borknbeans.lightweightinventorysorting.sorting;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
+
 import borknbeans.lightweightinventorysorting.LightweightInventorySorting;
 import borknbeans.lightweightinventorysorting.config.Config;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
@@ -35,9 +38,9 @@ public class SortButton extends ClickableWidget {
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         if (this.isHovered()) {
-            context.drawGuiTexture(RenderLayer::getGuiTextured, buttonHoverTexture, this.getX(), this.getY(), this.getWidth(), this.getHeight());
+            context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, buttonHoverTexture, this.getX(), this.getY(), this.getWidth(), this.getHeight());
         } else {
-            context.drawGuiTexture(RenderLayer::getGuiTextured, buttonTexture, this.getX(), this.getY(), this.getWidth(), this.getHeight());
+            context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, buttonTexture, this.getX(), this.getY(), this.getWidth(), this.getHeight());
         }
     }
 
