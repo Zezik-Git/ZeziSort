@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "lightweight-inventory-sorting",
 	"version": "${version}",
-	"name": "Lightweight Inventory Sorting",
+	"name": "ZeziSort",
 	"description": "Lightweight client-side inventory Sorting with no extra fluff",
 	"authors": [
 		"BorknBeans"
