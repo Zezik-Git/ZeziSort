@@ -10,6 +10,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-This mod is distributed under **MIT License**.
+This mod is distributed under **[MIT License](https://github.com/Zezik-Git/ZeziSort/blob/main/LICENSE)**.
 
 Forked from [Lightweight Inventory Sorting](https://github.com/borknbeans/LightweightInventorySorting) by [borknbeans](https://github.com/borknbeans).
